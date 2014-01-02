@@ -1,0 +1,58 @@
+=== Advanced Custom Fields: Number Slider ===
+Contributors: Q Studio
+Tags: acf, advanced custom field, number, slider, slide, select, integer
+Requires at least: 3.5
+Tested up to: 3.8
+Stable tag: 0.2.5
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Number Slider field for Advanced Custom Fields
+
+== Description ==
+
+This is an add-on for the [Advanced Custom Fields](http://wordpress.org/extend/plugins/advanced-custom-fields/) WordPress plugin, that allows you to add a Number Slider field type.
+
+= Compatibility =
+
+This add-on will work with:
+
+* Advanced Custom Fields version 4 and up
+* Advanced Custom Fields version 3 and up
+
+= More Information =
+
+
+== Installation ==
+
+1. Upload the plugin to your plugins directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Enjoy :)
+
+== Screenshots ==
+
+1. Sliding Number Selector on edit screen
+2. Configure Number Slider Field in ACF
+
+== Frequently Asked Questions  ==
+
+= How does this plugin work? = 
+
+The ACF Number Slider plugin adds an additional field type to Advanced Custom Fields that allows the user to set-up an integer field with a slide rule to select the value.
+
+Each Number Slider can be configured with the following parameters:
+
+* Units of measurement
+* Minimum value
+* Maximum value
+* Incremental steps between values
+
+== Upgrade Notice ==
+
+= 0.2.5 =
+* Initial version
+
+== Changelog ==
+
+= 0.2.5 =
+* Initial version
