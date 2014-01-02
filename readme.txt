@@ -1,5 +1,5 @@
 === Advanced Custom Fields: Number Slider ===
-Contributors: Q Studio
+Contributors: qlstudio
 Tags: acf, advanced custom field, number, slider, slide, select, integer
 Requires at least: 3.5
 Tested up to: 3.8
