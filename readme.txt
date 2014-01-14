@@ -3,7 +3,7 @@ Contributors: qlstudio
 Tags: acf, advanced custom field, number, slider, slide, select, integer
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 0.2.5
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,9 @@ Each Number Slider can be configured with the following parameters:
 * Initial version
 
 == Changelog ==
+
+= 0.3 =
+* Fixed issue in V4 plugin to properly include JS files
 
 = 0.2.5 =
 * Initial version
