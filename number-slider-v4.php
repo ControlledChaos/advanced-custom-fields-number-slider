@@ -248,7 +248,7 @@ jQuery(document).ready( function($) {
 	*  @date	23/01/13
          * @link        http://loopj.com/jquery-simple-slider/
 	*/
-	function admin_print_styles() 
+	function input_admin_enqueue_scripts() 
         {
             
             // add JS ##
