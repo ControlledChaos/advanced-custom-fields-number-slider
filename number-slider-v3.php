@@ -216,7 +216,11 @@ class acf_field_number_slider extends acf_Field
 
         $field = array_merge( $this->defaults, $field );
 
-        echo '<input type="text" value="' . $field['value'] . '" name="' . $field['name'] . '" class="simple_slider" title="' . $field['label'] . '" data-slider="true" data-slider-highlight="true" data-slider-range="'.$field['min_value'].','.$field['max_value'].'" data-slider-step="'.$field['increment_value'].'" data-slider-snap="true" />';
+        // create a random ID ## 
+        $this->id = mt_rand( 1, 50 );
+
+        // echo the field html ##
+        echo '<input type="text" value="' . $field['value'] . '" name="' . $field['name'] . '" class="simple_slider" title="' . $field['label'] . '" data-slider="true" data-slider-id="'.$this->id.'" data-slider-highlight="true" data-slider-range="'.$field['min_value'].','.$field['max_value'].'" data-slider-step="'.$field['increment_value'].'" data-slider-snap="true" />';
 
         // for later use ##
         $this->units = $field['units'];
@@ -225,44 +229,48 @@ class acf_field_number_slider extends acf_Field
 <script>
 jQuery(document).ready( function($) {
 
-$("[data-slider]").each(function() {
+    $('*[data-slider-id="<?php echo $this->id; ?>"]').each(function() {
+        
+        // get slider ID ##
+        $slider_id = $(this).data("slider-id");
+        console.log('slider id: '+$slider_id);
+        
+        // declare variables ##
+        var $el, allowedValues, settings, x, input = $(this);
+        
+        // add the output <p> to each slider ##
+        $("<p>")
+            .addClass("description").addClass("slide")
+            .html( $(this).val()+' <?php echo $this->units; ?>' ) // grab value ##
+            .insertAfter( $(this) );
+        
+        $el = $(this);
+        settings = {};
+       
+        // grab the slider settings ##
+        if ($el.data("slider-range")) {
+          settings.range = $el.data("slider-range").split(",");
+        }
+        if ($el.data("slider-step")) {
+          settings.step = $el.data("slider-step");
+        }
+        settings.snap = $el.data("slider-snap");
+        settings.equalSteps = $el.data("slider-equal-steps");
+        if ($el.attr("data-slider-highlight")) {
+          settings.highlight = $el.data("slider-highlight");
+        }
+        
+        // call the simpleSlider function - passing our settings ##
+        return $el.simpleSlider(settings);
+    
+    // event binding to update displayed value ##
+    }).on("slider:ready slider:changed", function ( event, data ) {
 
-    // declare variables ##
-    var $el, allowedValues, settings, x, input = $(this);
+        $(this)
+            .nextAll(".description.slide:first")
+            .html( data.value.toFixed(0)+' <?php echo $this->units; ?>' );
 
-    // add the output <p> to each slider ##
-    $("<p>")
-        .addClass("description").addClass("slide")
-        .html( $(this).val()+' <?php echo $this->units; ?>' ) // grab value ##
-        .insertAfter( $(this) );
-
-    $el = $(this);
-    settings = {};
-
-    // grab the slider settings ##
-    if ($el.data("slider-range")) {
-      settings.range = $el.data("slider-range").split(",");
-    }
-    if ($el.data("slider-step")) {
-      settings.step = $el.data("slider-step");
-    }
-    settings.snap = $el.data("slider-snap");
-    settings.equalSteps = $el.data("slider-equal-steps");
-    if ($el.attr("data-slider-highlight")) {
-      settings.highlight = $el.data("slider-highlight");
-    }
-
-    // call the simpleSlider function - passing our settings ##
-    return $el.simpleSlider(settings);
-
-// event binding to update displayed value ##
-}).on("slider:ready slider:changed", function ( event, data ) {
-
-    $(this)
-        .nextAll(".description.slide:first")
-        .html( data.value.toFixed(0)+' <?php echo $this->units; ?>' );
-
-});
+    });
 
 });
 </script>   

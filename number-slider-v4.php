@@ -147,7 +147,11 @@ class acf_field_number_slider extends acf_field
 	function create_field( $field ) 
         {
             
-            echo '<input type="text" value="' . $field['value'] . '" name="' . $field['name'] . '" class="simple_slider" title="' . $field['label'] . '" data-slider="true" data-slider-highlight="true" data-slider-range="'.$field['min_value'].','.$field['max_value'].'" data-slider-step="'.$field['increment_value'].'" data-slider-snap="true" />';
+            // create a random ID ## 
+            $this->id = mt_rand( 1, 50 );
+            
+            // echo the field html ##
+            echo '<input type="text" value="' . $field['value'] . '" name="' . $field['name'] . '" class="simple_slider" title="' . $field['label'] . '" data-slider="true" data-slider-id="'.$this->id.'" data-slider-highlight="true" data-slider-range="'.$field['min_value'].','.$field['max_value'].'" data-slider-step="'.$field['increment_value'].'" data-slider-snap="true" />';
         
             // for later use ##
             $this->units = $field['units'];
@@ -156,7 +160,11 @@ class acf_field_number_slider extends acf_field
 <script>
 jQuery(document).ready( function($) {
     
-    $("[data-slider]").each(function() {
+    $('*[data-slider-id="<?php echo $this->id; ?>"]').each(function() {
+        
+        // get slider ID ##
+        $slider_id = $(this).data("slider-id");
+        console.log('slider id: '+$slider_id);
         
         // declare variables ##
         var $el, allowedValues, settings, x, input = $(this);
